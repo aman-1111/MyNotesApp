@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+
+    <!-- Bootstrap 4 CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for Dark Theme -->
+    <style>
+        body {
+            background-color: #121212;  /* Dark background */
+            color: #e0e0e0;  /* Light text color */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .card {
+            background-color: #1c1c1c;  /* Dark card background */
+            border: 1px solid #333;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            color: #ffffff;
+        }
+
+        .form-group input, .form-group textarea {
+            background-color: #333;
+            border: 1px solid #555;
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            background-color: #444;
+            border-color: #007bff;
+        }
+
+        .note-actions a {
+            color: #ffffff;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .note-actions a:hover {
+            opacity: 0.8;
+        }
+
+        hr {
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>My Notes</h1>
+
+        <!-- Add New Note Form -->
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Create a New Note</h3>
+                <form action="/add" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="title" class="form-control" placeholder="Note Title" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="content" class="form-control" placeholder="Note Content" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Note</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Your Notes</h2>
+        <div class="list-group">
+            {% for note in notes %}
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ note.title }}</h4>
+                        <p class="card-text">{{ note.content[:150] }}...</p>
+                        <div class="note-actions">
+                            <a href="/delete/{{ note.id }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/update/{{ note.id }}" class="btn btn-warning btn-sm">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Note</title>
+
+    <!-- Bootstrap 4 CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for Dark Theme -->
+    <style>
+        body {
+            background-color: #121212;  /* Dark background */
+            color: #e0e0e0;  /* Light text color */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .form-group input, .form-group textarea {
+            background-color: #333;
+            border: 1px solid #555;
+            color: #ffffff;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            background-color: #444;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Update Note</h1>
+
+        <form action="/update/{{ note.id }}" method="POST">
+            <div class="form-group">
+                <input type="text" name="title" value="{{ note.title }}" class="form-control" placeholder="Note Title" required>
+            </div>
+            <div class="form-group">
+                <textarea name="content" class="form-control" placeholder="Note Content" rows="4" required>{{ note.content }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Update Note</button>
+        </form>
+
+        <a href="/" class="btn btn-secondary btn-block mt-3">Back to Notes</a>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
